@@ -1,6 +1,6 @@
 # About my dockerfile
 
-FROM openshift/base-centos7
+FROM centos/s2i-base-centos7
 
 ENV JMETER_VERSION apache-jmeter-5.3
 ENV MIRROR_LINK https://www-eu.apache.org/dist/jmeter/binaries/${JMETER_VERSION}.tgz

@@ -3,7 +3,7 @@
 
 Dockerized JMeter with ElasticsearchBackendListener for live logging.
 
-> Travis:  [![Build Status](https://travis-ci.org/rdpanek/jmeter.svg?branch=master)](https://travis-ci.org/rdpanek/jmeter) build result of build JMeter with ElasticsearchBackendListener, run Elasticsearch and run test with live logging to Elasticsearch.
+> Travis:  [![Build Status](https://travis-ci.org/wrongkitchen/jmeter.svg?branch=master)](https://travis-ci.org/wrongkitchen/jmeter) build result of build JMeter with ElasticsearchBackendListener, run Elasticsearch and run test with live logging to Elasticsearch.
 
 
 ## Image based on RHEL Atomic Base Image
@@ -40,44 +40,44 @@ When you use RHEL, CentOS, or Fedora, mount volume with `Z` option.
 
 ### Run with print command line options
 
-    docker run --name jmeter -it --rm rdpanek/jmeter:5.3.0
+    docker run --name jmeter -it --rm wrongkitchen/jmeter:5.3.0
 
 ### Run with help
 
-    docker run --name jmeter -it --rm rdpanek/jmeter:5.3.0 --help
+    docker run --name jmeter -it --rm wrongkitchen/jmeter:5.3.0 --help
 
 ### Run as interactive
 
-    docker run --name jmeter -it --rm -v `pwd`:/jmeter rdpanek/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
+    docker run --name jmeter -it --rm -v `pwd`:/jmeter wrongkitchen/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
 
 ### Run as detached
 
-    docker run --name jmeter --detach --rm -v `pwd`:/jmeter rdpanek/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
+    docker run --name jmeter --detach --rm -v `pwd`:/jmeter wrongkitchen/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
 
 ### Run as specify USER
 
-    docker run --name jmeter -it --rm -v `pwd`:/jmeter --user $(id -u):$(id -g) rdpanek/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
+    docker run --name jmeter -it --rm -v `pwd`:/jmeter --user $(id -u):$(id -g) wrongkitchen/jmeter:5.3.0 --nongui --testfile testPlan.jmx --logfile result.jtl
 
 ### Run with log to stdout
 
-    docker run --name jmeter -it --rm -v `pwd`:/jmeter rdpanek/jmeter:5.3.0 --nongui --testfile testPlan.jmx -j /dev/stdout
+    docker run --name jmeter -it --rm -v `pwd`:/jmeter wrongkitchen/jmeter:5.3.0 --nongui --testfile testPlan.jmx -j /dev/stdout
 
 ### Run as server / generator
 
-    docker run --name generator1 --detach --publish 1098:1098 --rm rdpanek/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=192.168.1.202 -Jserver.rmi.localport=1098 -Dserver_port=1098 --server
+    docker run --name generator1 --detach --publish 1098:1098 --rm wrongkitchen/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true -Djava.rmi.server.hostname=192.168.1.202 -Jserver.rmi.localport=1098 -Dserver_port=1098 --server
 
 > Stopping a server after the end of the test It's possible add this option
 > `-Jserver.exitaftertest=true`
 >
 > ### Connect to generator
 >
->     docker run --name controller -it --rm --volume `pwd`:/jmeter rdpanek/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true --nongui --testfile testPlan.jmx --remotestart 192.168.1.202:1098,192.168.1.202:1099 --logfile result.jtl
+>     docker run --name controller -it --rm --volume `pwd`:/jmeter wrongkitchen/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true --nongui --testfile testPlan.jmx --remotestart 192.168.1.202:1098,192.168.1.202:1099 --logfile result.jtl
 
 ### Generate HTML report after test end
 
 Go to [Documentation](https://jmeter.apache.org/usermanual/generating-dashboard.html)
 
-    docker run --name controller --detach --rm --volume `pwd`:/jmeter rdpanek/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true --nongui --testfile testPlan.jmx --logfile result.jtl --forceDeleteResultFile --reportatendofloadtests --reportoutputfolder report   -Jjmeter.reportgenerator.overall_granularity=1000
+    docker run --name controller --detach --rm --volume `pwd`:/jmeter wrongkitchen/jmeter:5.3.0 -Jserver.rmi.ssl.disable=true --nongui --testfile testPlan.jmx --logfile result.jtl --forceDeleteResultFile --reportatendofloadtests --reportoutputfolder report   -Jjmeter.reportgenerator.overall_granularity=1000
 
 ## 13. Remote Testing with JMeter
 
@@ -119,7 +119,7 @@ All nodes ( client and servers )
 Run docker image
 
 ```
-docker run --name jmeter -it -v `pwd`:/tests --rm -p 5901:5901 rdpanek/jmeter:vnc-5.3.0
+docker run --name jmeter -it -v `pwd`:/tests --rm -p 5901:5901 wrongkitchen/jmeter:vnc-5.3.0
 ```
 
 and connect via some VNC Viewer to `localhost:5901` and password is `secret`
@@ -155,7 +155,7 @@ On Desktop you can use scripts
 # Perf Demo Web
 
 ```
-docker run --name test-web --rm -p 8080:80 -d rdpanek/test-web:1.0
+docker run --name test-web --rm -p 8080:80 -d wrongkitchen/test-web:1.0
 ```
 
 
